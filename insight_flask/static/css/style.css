@@ -1,20 +1,134 @@
-#background {
-    background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/backdrop.jpg");
-	background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/backdrop.jpg");
-	background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/backdrop.jpg");
-	background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../../images/backdrop.jpg");
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro');
+
+body {
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+
+    text-align: center;
+    color: #333;
+}
+
+.light { color: #eee; }
+h1 {
+    font-family: "Playfair Display", "Georgia", serif;
+}
+
+header {
+    padding: 1em;
+}
+
+header h1 {
+    padding-top: 0.25em;
+    font-size: 40pt;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+header a:hover { 
+    color: #ddd; 
+    text-decoration: none;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+#stripes {
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    /*background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
+    background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
+    background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");*/
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url("../img/backdrop.jpg");
+    /*background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    /*background: linear-gradient(#4EF037, #00B7C2);*/
+    transform: skewY(-12deg);
+    transform-origin: 0;
+    z-index: -1;
+
+    /*overflow: hidden;*/
+}
+
+#buttons {
+    padding: 1em;
+}
+
+#gum {
+    height: 20em;
+}
+
+#logo {
+    width: 7em;
+}
+
+#record {
+    background-color: #FC4442;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#record:hover {
+    background-color: #DC2422;
+}
+
+#play {
+    background-color: #17B978;
+    color: white;
+}
+
+#play:disabled {
+    background-color: #84baa4;
+    color: #eee;
+}
+
+.button { 
+    border-radius: 5px; 
+    padding: 0.25em 0.5em; 
+}
+
+.event-type {
+    padding: 0.5em;
+    color: white;
+    background-color: #4D4545; 
+}
+#formal, #record { margin-right: 10px; }
+
+.event-type:hover {
+    background-color: #2D2525; 
+    color: white;
+    text-decoration: none;
+}
+
+
+body {
+    /*background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
+    background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
+    background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");*/
+    /*background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("../img/communication.png");
 	background-attachment: fixed;
 	background-position: center center;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: cover;*/
 }
-#container {
+
+#recorded {
+    display: none;
+}
+/*#container {
     margin: auto;
     width: 640px;
     height: 480px;
+}
+#video-container {
     border: 5px rgb(255, 255, 255) solid;
     background-color: gray;
-    
 }
 #choices {
     margin-top: 170px;
@@ -28,4 +142,4 @@
 #buttons {
     margin-top: 50px;
     margin-left: 10px;
-}
+}*/

@@ -2,12 +2,31 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<div id="header" style="color: white; text-align: center; font-size:40px"> 
-    <div><img src="images/favicon.ico" height="42" width="42" style="border-radius: 50%"></div>
-    Deep Insight
-    <div id="choices" class="flex-container">
-        <a href="{{ url_for('formal') }}"><button id="formal" style="font-family:Lobster; border-radius:20%; font-size:30px">formal path</button></a>
-        <a href="{{ url_for('formal') }}"><button id="informal" style="font-family:Lobster; border-radius:20%; font-size:30px">informal path</button></a>
-    </div>
+<div class="container">
+	<p class="light">Record yourself, and we'll help you improve your communication skills.</p>
+
+	<div id="video-container">
+	<div>
+	    <video id="gum" autoplay muted></video>
+	</div>
+
+	<div id="buttons">
+	    <button id="record" class="button" disabled><i class="fa fa-video-camera" aria-hidden="true"></i> Record</button>
+	    <button id="play" class="button" disabled><i class="fa fa-play" aria-hidden="true"></i> Play</button>
+	</div>
+
+	<video id="recorded" loop controls></video>
+	</div>
+
+	<div>
+		<p>Is this for a formal or informal occasion?</p>
+	    <a href="{{ url_for('formal') }}" id="formal" class="event-type button"><i class="fa fa-black-tie" aria-hidden="true"></i>  Formal</a>
+	    <a href="{{ url_for('informal') }}" id="informal" class="event-type button"><i class="fa fa-user" aria-hidden="true"></i>  Informal</a>
+	</div>
 </div>
+
+<!-- include adapter for srcObject shim -->
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="{{ url_for('static', filename='js/main.js')}}"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 {% endblock %}
