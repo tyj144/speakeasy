@@ -1,0 +1,23 @@
+{% extends 'master.html' %}
+{% block title %}Camera{% endblock %}
+
+{% block body %}
+<div id="container">
+        <div>
+            <video id="gum" autoplay muted></video>
+        </div>
+
+        <div id="buttons">
+            <button id="record" disabled>Start</button>
+            <button id="play" class="fa fa-play" disabled></button>
+        </div>
+
+        <video id="recorded" loop controls></video>
+    </div>
+</div>
+
+<!-- include adapter for srcObject shim -->
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+{% endblock %}

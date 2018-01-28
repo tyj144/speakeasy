@@ -1,0 +1,13 @@
+{% extends 'master.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div id="header" style="color: white; text-align: center; font-size:40px"> 
+    <div><img src="images/favicon.ico" height="42" width="42" style="border-radius: 50%"></div>
+    Deep Insight
+    <div id="choices" class="flex-container">
+        <a href="{{ url_for('formal') }}"><button id="formal" style="font-family:Lobster; border-radius:20%; font-size:30px">formal path</button></a>
+        <a href="{{ url_for('formal') }}"><button id="informal" style="font-family:Lobster; border-radius:20%; font-size:30px">informal path</button></a>
+    </div>
+</div>
+{% endblock %}
