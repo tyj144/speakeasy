@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',
               filename='css/style.css')}}"/>
         <title>{% block title %}{% endblock %} - Deep Insight</title>
+        <style>{% block style %}{% endblock %}</style>
 
     </head>
     
@@ -15,8 +16,25 @@
         <div id="stripes">
         </div>
         <header>
-            <img id="logo" src="{{ url_for('static', filename='img/conversation.svg') }}">
+            <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+              
+              <div>
+                <img id="logo" src="{{ url_for('static', filename='img/conversation.svg') }}">
+                <a class="navbar-dark" href="{{ url_for('index') }}" class="light">SpeakEasy</a>
+            </div>
+
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <!-- <img id="logo" src="{{ url_for('static', filename='img/conversation.svg') }}">
             <a href="{{ url_for('index') }}"><h1>SpeakEasy</h1></a>
+            <p class="light">Record yourself, and we'll help you improve your communication skills.</p> -->
         </header>
 
         <div id="main">

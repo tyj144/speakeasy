@@ -9,11 +9,23 @@ def index():
 
 @app.route('/formal')
 def formal():
-	return render_template('camera.html')
+	return render_template('record.html', formal=True)
 
 @app.route('/informal')
 def informal():
-	return render_template('camera.html')
+	text = get_text()
+	return render_template('record.html', formal=False)
+
+@app.route('/results')
+def results():
+	text = get_text()
+	return render_template('results.html', text=text)
+
+def get_text():
+	with open('static/lorem.txt', 'r') as f:
+		text = f.read()
+
+	return text
 
 # @app.route('/record_status', methods=['POST'])
 # def record_status():

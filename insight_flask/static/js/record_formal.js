@@ -134,7 +134,7 @@ function stopRecording() {
   var a = document.createElement('a');
   a.style.display = 'none';
   a.href = url;
-  a.download = 'test.webm';
+  a.download = 'test_formal.webm';
   document.body.appendChild(a);
   console.log(a);
   a.click();

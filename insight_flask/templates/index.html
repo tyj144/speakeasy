@@ -1,27 +1,84 @@
 {% extends 'master.html' %}
 {% block title %}Home{% endblock %}
+{% block style %}
+body {
+	background-color: #F8FBFF;
+}
+header { background: none; padding-bottom: 5em; }
+#stripes {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    /*background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
+    background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
+    background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");*/
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url("{{ url_for('static', filename='img/backdrop.jpg') }}");
+    /*background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    /*background: linear-gradient(#4EF037, #00B7C2);*/
+    transform: skewY(-12deg);
+    transform-origin: 0;
+    z-index: -1;
+
+    /*overflow: hidden;*/
+}
+#illustration {
+	position: relative;
+	left: 40em;
+	bottom: 7em;
+	width: 35em;
+}
+@media only screen and (max-width: 768px) {
+	header {
+		padding: 1em;
+	}
+	#illustration {
+		display: none;
+	}
+	#below-head {
+		margin-top: 8em;
+	}
+}
+#communication {
+	padding: 0;
+}
+{% endblock %}
 
 {% block body %}
 <div class="container">
-	<p class="light">Record yourself, and we'll help you improve your communication skills.</p>
-
-	<div id="video-container">
-	<div>
-	    <video id="gum" autoplay muted></video>
+	<div class="row light">
+		<div class="col-md">
+			<h1>Welcome to SpeakEasy.</h1>
+			<br>
+			<p>Saying the right thing can be hard. Let us help you.</p>
+			<p>Simply record yourself talking, and we'll use the latest technologies in machine learning and computer vision to let you know how you're doing.</p>
+			<p>First off, are you practicing for a formal or informal occasion?</p>
+		    <a href="{{ url_for('formal') }}" id="formal" class="event-type button"><i class="fa fa-black-tie" aria-hidden="true"></i>  Formal</a>
+		    <a href="{{ url_for('informal') }}" id="informal" class="event-type button"><i class="fa fa-user" aria-hidden="true"></i>  Informal</a>
+		</div>
+		<div class="col-md">
+		</div>
 	</div>
-
-	<div id="buttons">
-	    <button id="record" class="button" disabled><i class="fa fa-video-camera" aria-hidden="true"></i> Record</button>
-	    <button id="play" class="button" disabled><i class="fa fa-play" aria-hidden="true"></i> Play</button>
+	<div id="illustration">
+		<img src="{{ url_for('static', filename='img/fear-speaking.jpg') }}" class="img-thumbnail">
 	</div>
-
-	<video id="recorded" loop controls></video>
+	<div class="row" id="below-head">
+		<div class="col-md-5">
+			<h1>What can it do?</h1>
+		</div>
+		<div class="col-md-7" id="communication">
+			<img src="{{ url_for('static', filename='img/communication.png') }}" alt="communication">
+		</div>
 	</div>
-
-	<div>
-		<p>Is this for a formal or informal occasion?</p>
-	    <a href="{{ url_for('formal') }}" id="formal" class="event-type button"><i class="fa fa-black-tie" aria-hidden="true"></i>  Formal</a>
-	    <a href="{{ url_for('informal') }}" id="informal" class="event-type button"><i class="fa fa-user" aria-hidden="true"></i>  Informal</a>
+	<div class="row">
+		<div class="col-md-5" id="communication">
+			<img src="{{ url_for('static', filename='img/talk.png') }}" alt="communication">
+		</div>
+		<div class="col-md-7">
+			<h1>How does it work?</h1>
+		</div>
 	</div>
 </div>
 

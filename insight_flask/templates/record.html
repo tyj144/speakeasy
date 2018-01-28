@@ -1,0 +1,68 @@
+{% extends 'master.html' %}
+{% block title %}Home{% endblock %}
+
+{% block style %}
+header { background: none;}
+#main { padding: 0; }
+#stripes {
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    /*background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
+    background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
+    background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");*/
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url("{{ url_for('static', filename='img/backdrop.jpg') }}");
+    /*background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    /*background: linear-gradient(#4EF037, #00B7C2);*/
+    transform: skewY(-12deg);
+    transform-origin: 0;
+    z-index: -1;
+
+    /*overflow: hidden;*/
+}
+#selected {
+	margin: 0;
+}
+#get-results {
+	padding: 1em 0;
+}
+
+#get-results .button {
+	background-color: #226B80;
+	color: white;
+}
+{% endblock %}
+
+{% block body %}
+<div class="container light">
+	<p id="selected">You selected</p>
+	<h1>
+	{% if formal %}F{% else %}Inf{% endif %}ormal</h1>
+	<p>Record yourself, and we'll give you feedback on how it fits in {% if formal %}a f{% else %}an inf{% endif %}ormal setting.</p>
+	<div id="video-container">
+	<div>
+	    <video id="gum" autoplay muted></video>
+	</div>
+
+	<div id="buttons">
+	    <button id="record" class="btn btn-danger" disabled><i class="fa fa-video-camera" aria-hidden="true"></i> Record</button>
+	    <button id="play" class="btn btn-secondary" disabled><i class="fa fa-play" aria-hidden="true"></i> Play</button>
+	</div>
+
+	<video id="recorded" loop controls></video>
+
+	<div id="get-results">
+		<a class="btn btn-primary" href="{{ url_for('results') }}"><i class="fa fa-file-text" aria-hidden="true"></i>
+ Get your results</a>
+	</div>
+</div>	
+
+	{% if formal %}
+	<script src="{{ url_for('static', filename='js/record_formal.js')}}"></script>
+	{% else %}
+	<script src="{{ url_for('static', filename='js/record_informal.js')}}"></script>
+	{% endif %}
+{% endblock %}
