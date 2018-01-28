@@ -3,14 +3,48 @@
 
 {% block style %}
 #main { text-align: left; }
+span.stop { 
+	color: #EA4C4C; 
+}
+span.stop { 
+	color: #EA4C4C; 
+}
+span.warning {
+	color: #D4B123;
+}
+#main { margin: 0 2em; }
+#success { width: 30em; }
 {% endblock %}
 
 {% block body %}
-
-<div id="text">
-	<p white-space: pre-wrap;>{{ text }}</p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div>
+				<h1>The results are in!</h1>
+				<p>Good job! Here's a report of how you did.</p>
+			</div>
+			<div id="text">
+				<h2>Here's a breakdown of what you said:</h2>
+				<p white-space: pre-wrap;>
+				{% for word in text %}
+					{% if word in stop_words %}
+					<span class="stop">{{ word }}</span>
+					{% elif word in warning_words %}
+					<span class="warning">{{ word }}</span>
+					{% else %}
+					{{ word }}
+					{% endif %}
+				{% endfor %}
+				</p>
+			</div>
+		</div>	
+		<div class="col-md-6">
+			<img src="{{ url_for('static', filename='img/success.png')}}">
+		</div>
+	</div>
+	
 </div>
-
 <!-- include adapter for srcObject shim -->
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 <script src="{{ url_for('static', filename='js/main.js')}}"></script>

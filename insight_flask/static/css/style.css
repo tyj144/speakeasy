@@ -18,7 +18,7 @@ body {
 }
 
 .light { color: #eee; }
-h1 {
+h1, h2, h3 {
     font-family: "Playfair Display", "Georgia", serif;
 }
 img { max-width: 100%; }

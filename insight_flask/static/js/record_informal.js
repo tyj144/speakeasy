@@ -24,7 +24,7 @@ var recordedVideo = document.querySelector('video#recorded');
 
 var recordButton = document.querySelector('button#record');
 var playButton = document.querySelector('button#play');
-// var downloadButton = document.querySelector('button#download');
+var analyzeButton = document.querySelector('button#analyze'); //
 recordButton.onclick = toggleRecording;
 playButton.onclick = play;
 // downloadButton.onclick = download;
@@ -81,13 +81,13 @@ function handleStop(event) {
 }
 
 function toggleRecording() {
-  if (recordButton.textContent === ' Record') {
+  if (recordButton.textContent === 'Start') {
     startRecording();
   } else {
     stopRecording();
-    recordButton.textContent = ' Record';
+    recordButton.textContent = 'Start';
     playButton.disabled = false;
-    // downloadButton.disabled = false;
+    analyzeButton.disabled = false;
   }
 }
 
@@ -117,7 +117,7 @@ function startRecording() {
   console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
   recordButton.textContent = 'Stop';
   playButton.disabled = true;
-  // downloadButton.disabled = true;
+  // analyzeButton.disabled = true;
   mediaRecorder.onstop = handleStop;
   mediaRecorder.ondataavailable = handleDataAvailable;
   mediaRecorder.start(10); // collect 10ms of data
@@ -135,8 +135,8 @@ function stopRecording() {
   a.style.display = 'none';
   a.href = url;
   a.download = 'test_informal.webm';
-  document.body.appendChild(a);
   console.log(a);
+  document.body.appendChild(a);
   a.click();
   setTimeout(function() {
     document.body.removeChild(a);
@@ -162,15 +162,3 @@ function play() {
     }
   });
 }
-
-// // http://www.codepool.biz/web-camera-recorder-oepncv-flask.html
-// var xhr = new XMLHttpRequest();
-// xhr.onreadystatechange = function() {
-// 	if (xhr.readyState == 4 && xhr.status == 200) {
-//         alert(xhr.responseText);
-//     }
-// }
-
-// xhr.open("POST", "/record_status");
-// xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-// xhr.send(JSON.stringify({ status: "true" }));

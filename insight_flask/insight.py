@@ -13,16 +13,19 @@ def formal():
 
 @app.route('/informal')
 def informal():
-	text = get_text()
+	text = get_text('static/lorem.txt', 'static/stop_lorem.txt')
 	return render_template('record.html', formal=False)
 
 @app.route('/results')
 def results():
-	text = get_text()
-	return render_template('results.html', text=text)
+	text = get_text('static/lorem.txt')
+	stop_words = get_text('static/stop_lorem.txt').split("\n")
+	warning_words = get_text('static/warning_lorem.txt').split("\n")
 
-def get_text():
-	with open('static/lorem.txt', 'r') as f:
+	return render_template('results.html', text=text.split(" "), stop_words=stop_words, warning_words=warning_words)
+
+def get_text(filename):
+	with open(filename, 'r') as f:
 		text = f.read()
 
 	return text
