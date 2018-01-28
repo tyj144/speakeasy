@@ -125,7 +125,6 @@ function startRecording() {
 }
 
 function stopRecording() {
-  playButton.disabled = false;
   mediaRecorder.stop();
   console.log('Recorded Blobs: ', recordedBlobs);
   recordedVideo.controls = true;
@@ -135,7 +134,7 @@ function stopRecording() {
   var a = document.createElement('a');
   a.style.display = 'none';
   a.href = url;
-  a.download = 'test.webm';
+  a.download = 'test_formal.webm';
   document.body.appendChild(a);
   console.log(a);
   a.click();
@@ -146,7 +145,6 @@ function stopRecording() {
 }
 
 function play() {
-  document.getElementById("recorded").style.display = "inline";
   var superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
   recordedVideo.src = window.URL.createObjectURL(superBuffer);
   // workaround for non-seekable video taken from
@@ -163,13 +161,6 @@ function play() {
       };
     }
   });
-  if (typeof(Storage) !== "undefined") {
-    // Store
-    localStorage.setItem("recordedVideo", recordedVideo);
-    localStorage.setItem("recordedBlobs", recordedBlobs);
-  } else {
-    document.getElementById("video").style.display = none;
-  }
 }
 
 // // http://www.codepool.biz/web-camera-recorder-oepncv-flask.html

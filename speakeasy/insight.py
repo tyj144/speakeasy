@@ -1,5 +1,7 @@
 from flask import Flask, render_template, Response, jsonify, request
 from camera import VideoCamera
+import json
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -13,16 +15,22 @@ def formal():
 
 @app.route('/informal')
 def informal():
-	text = get_text('static/lorem.txt', 'static/stop_lorem.txt')
 	return render_template('record.html', formal=False)
 
 @app.route('/results')
 def results():
-	text = get_text('static/lorem.txt')
-	stop_words = get_text('static/stop_lorem.txt').split("\n")
-	warning_words = get_text('static/warning_lorem.txt').split("\n")
+	text = get_text('static/text_folder/output_text.txt')
+	stop_words = get_text('static/text_folder/output_stop.txt').split("\n")
+	warning_words = get_text('static/text_folder/output_interested.txt').split("\n")
+	synonyms = json.load(open('static/text_folder/my_synonym.json'))
+	print(type(synonyms))
 
-	return render_template('results.html', text=text.split(" "), stop_words=stop_words, warning_words=warning_words)
+	for key, value in synonyms.items():
+		synonyms[key] = value[:5]
+
+	print(synonyms)
+    
+	return render_template('results.html', text=text.split(" "), stop_words=stop_words, warning_words=warning_words, synonyms=synonyms)
 
 def get_text(filename):
 	with open(filename, 'r') as f:

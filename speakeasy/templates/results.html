@@ -78,7 +78,21 @@ document.getElementById("recorded").style.display = "inline";
 				</p>
 			</div>
 		</div>
-	
+	</div>
+	<div style="padding-top: 3em;">
+			<h1>Words You Could Change</h1>
+		</div>
+	<div class="row">
+		{% for word, alts in synonyms.items() %}
+		<div class="col-sm-2">
+			<h3><span class="warning">{{ word }}</span></h3>
+			<ul>
+				{% for alt in alts %}
+				<li>{{ alt }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endfor %}
 	</div>
 </div>
 <!-- include adapter for srcObject shim -->
