@@ -24,7 +24,7 @@ var recordedVideo = document.querySelector('video#recorded');
 
 var recordButton = document.querySelector('button#record');
 var playButton = document.querySelector('button#play');
-var analyzeButton = document.querySelector('button#analyze'); //
+// var downloadButton = document.querySelector('button#download');
 recordButton.onclick = toggleRecording;
 playButton.onclick = play;
 // downloadButton.onclick = download;
@@ -81,13 +81,13 @@ function handleStop(event) {
 }
 
 function toggleRecording() {
-  if (recordButton.textContent === 'Start') {
+  if (recordButton.textContent === ' Record') {
     startRecording();
   } else {
     stopRecording();
-    recordButton.textContent = 'Start';
+    recordButton.textContent = ' Record';
     playButton.disabled = false;
-    analyzeButton.disabled = false;
+    // downloadButton.disabled = false;
   }
 }
 
@@ -117,7 +117,7 @@ function startRecording() {
   console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
   recordButton.textContent = 'Stop';
   playButton.disabled = true;
-  // analyzeButton.disabled = true;
+  // downloadButton.disabled = true;
   mediaRecorder.onstop = handleStop;
   mediaRecorder.ondataavailable = handleDataAvailable;
   mediaRecorder.start(10); // collect 10ms of data
@@ -125,6 +125,7 @@ function startRecording() {
 }
 
 function stopRecording() {
+  playButton.disabled = false;
   mediaRecorder.stop();
   console.log('Recorded Blobs: ', recordedBlobs);
   recordedVideo.controls = true;
@@ -134,24 +135,18 @@ function stopRecording() {
   var a = document.createElement('a');
   a.style.display = 'none';
   a.href = url;
-  // a.download = 'test_formal.webm';
-  console.log(a);
+  a.download = 'test.webm';
   document.body.appendChild(a);
+  console.log(a);
   a.click();
-  // setTimeout(function() {
-  //   document.body.removeChild(a);
-  //   window.URL.revokeObjectURL(url);
-  // }, 100);
-  if (typeof(Storage) !== "undefined") {
-    // Code for localStorage/sessionStorage.
-    localStorage.setItem("video-link", a);
-  } else {
-    // Sorry! No Web Storage support..
-    document.getElementById("video").display = "none";
-  }
+  setTimeout(function() {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, 100);
 }
 
 function play() {
+  document.getElementById("recorded").style.display = "inline";
   var superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
   recordedVideo.src = window.URL.createObjectURL(superBuffer);
   // workaround for non-seekable video taken from
@@ -168,4 +163,23 @@ function play() {
       };
     }
   });
+  if (typeof(Storage) !== "undefined") {
+    // Store
+    localStorage.setItem("recordedVideo", recordedVideo);
+    localStorage.setItem("recordedBlobs", recordedBlobs);
+  } else {
+    document.getElementById("video").style.display = none;
+  }
 }
+
+// // http://www.codepool.biz/web-camera-recorder-oepncv-flask.html
+// var xhr = new XMLHttpRequest();
+// xhr.onreadystatechange = function() {
+// 	if (xhr.readyState == 4 && xhr.status == 200) {
+//         alert(xhr.responseText);
+//     }
+// }
+
+// xhr.open("POST", "/record_status");
+// xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+// xhr.send(JSON.stringify({ status: "true" }));

@@ -43,16 +43,14 @@ header { background: none;}
 	{% if formal %}F{% else %}Inf{% endif %}ormal</h1>
 	<p>Record yourself, and we'll give you feedback on how it fits in {% if formal %}a f{% else %}an inf{% endif %}ormal setting.</p>
 	<div id="video-container">
-	<div>
 	    <video id="gum" autoplay muted></video>
+	    <video id="recorded" loop controls></video>
 	</div>
 
 	<div id="buttons">
 	    <button id="record" class="btn btn-danger" disabled><i class="fa fa-video-camera" aria-hidden="true"></i> Record</button>
 	    <button id="play" class="btn btn-secondary" disabled><i class="fa fa-play" aria-hidden="true"></i> Play</button>
 	</div>
-
-	<video id="recorded" loop controls></video>
 
 	<div id="get-results">
 		<a class="btn btn-primary" href="{{ url_for('results') }}"><i class="fa fa-area-chart" aria-hidden="true"></i>

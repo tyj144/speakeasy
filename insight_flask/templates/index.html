@@ -1,9 +1,6 @@
 {% extends 'master.html' %}
 {% block title %}Home{% endblock %}
 {% block style %}
-body {
-	background-color: #F8FBFF;
-}
 header { background: none; padding-bottom: 5em; }
 #stripes {
     position: absolute;
@@ -44,6 +41,19 @@ header { background: none; padding-bottom: 5em; }
 #communication {
 	padding: 0;
 }
+#how {
+	margin-top: 4em;
+}
+#main {
+	padding-bottom: 10em;
+	min-height: 100em;
+}
+#formality {
+	padding-top: 1em;
+}
+footer {
+	padding: 1em;
+}
 {% endblock %}
 
 {% block body %}
@@ -55,8 +65,10 @@ header { background: none; padding-bottom: 5em; }
 			<p>Saying the right thing can be hard. Let us help you.</p>
 			<p>Simply record yourself talking, and we'll use the latest technologies in machine learning and computer vision to let you know how you're doing.</p>
 			<p>First off, are you practicing for a formal or informal occasion?</p>
-		    <a href="{{ url_for('formal') }}" id="formal" class="event-type button"><i class="fa fa-black-tie" aria-hidden="true"></i>  Formal</a>
-		    <a href="{{ url_for('informal') }}" id="informal" class="event-type button"><i class="fa fa-user" aria-hidden="true"></i>  Informal</a>
+			<div id="formality">
+			    <a href="{{ url_for('formal') }}" id="formal" class="event-type button"><i class="fa fa-black-tie" aria-hidden="true"></i>  Formal</a>
+			    <a href="{{ url_for('informal') }}" id="informal" class="event-type button"><i class="fa fa-user" aria-hidden="true"></i>  Informal</a>
+			</div>
 		</div>
 		<div class="col-md">
 		</div>
@@ -65,19 +77,43 @@ header { background: none; padding-bottom: 5em; }
 		<img src="{{ url_for('static', filename='img/fear-speaking.jpg') }}" class="img-thumbnail">
 	</div>
 	<div class="row" id="below-head">
-		<div class="col-md-5">
+		<div class="col-md-5 left">
 			<h1>What can it do?</h1>
+			<p>
+				Language barriers are unfortunate, but they are avoidable. Why should a capable person
+				be limited by constructs of syntax and structure? SpeakEasy empowers individuals and encourages community-building
+				by assisting in overcoming these limitations.
+			</p>
+			<p>
+				SpeakEasy is the auto-correct for soft-skills. Based on what you say (word recognition) and the way you 
+				say it (facial recognition), SpeakEasy offers pointers on areas of communication users should focus on, either in
+				formal or informal settings.
+			</p>
+			<p>
+				Whether it be a speech, a class presentation, a business interview, or asking someone on a date, SpeakEasy
+				conforms to the situation and will assist you 
+			</p>
 		</div>
 		<div class="col-md-7" id="communication">
 			<img src="{{ url_for('static', filename='img/communication.png') }}" alt="communication">
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-5" id="communication">
+	<div class="row" id="how">
+		<div class="col-md-5">
 			<img src="{{ url_for('static', filename='img/talk.png') }}" alt="communication">
 		</div>
-		<div class="col-md-7">
+		<div class="col-md-7"  style="text-align: left; padding-left: 2.5em;">
 			<h1>How does it work?</h1>
+			<p>
+				SpeakEasy first takes in a user-recorded video. It analyzes both the audio
+				and the visual components by performing various cognitive processes on them to track facial
+				expressions, emotional changes, and speech selection over time. 
+			</p>
+			<p>
+				SpeakEasy employs Google's 
+				speech-to-text API and natural language toolkit for text and Micorosoft's Cognitive Services
+				API for emotional analysis.
+			</p>
 		</div>
 	</div>
 </div>
@@ -86,4 +122,9 @@ header { background: none; padding-bottom: 5em; }
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+{% endblock %}
+
+{% block footer %}
+            <img id="logo" src="{{ url_for('static', filename='img/conversation.svg') }}">
+            <p>Made by <a href="https://github.com/feziodoshi">Feril Donshi</a>, <a href="https://github.com/RohitSaha">Rohit Saha</a>, <a href="https://github.com/syz99">Samuel Zhang</a>, and <a href="https://github.com/tyj144">Tyler Jiang</a>.</p>
 {% endblock %}

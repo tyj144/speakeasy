@@ -12,18 +12,51 @@ span.stop {
 span.warning {
 	color: #D4B123;
 }
-#main { margin: 0 2em; }
-#success { width: 30em; }
+#main { margin: 0 2em; padding: 3em 0; }
+#success { width: 20em; }
+footer {
+	padding: 1em;
+}
 {% endblock %}
+
+{% block script %}
+document.getElementById("recorded").style.display = "inline";
+  var superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+  recordedVideo.src = window.URL.createObjectURL(superBuffer);
+  // workaround for non-seekable video taken from
+  // https://bugs.chromium.org/p/chromium/issues/detail?id=642012#c23
+  recordedVideo.addEventListener('loadedmetadata', function() {
+    if (recordedVideo.duration === Infinity) {
+      recordedVideo.currentTime = 1e101;
+      recordedVideo.ontimeupdate = function() {
+        recordedVideo.currentTime = 0;
+        recordedVideo.ontimeupdate = function() {
+          delete recordedVideo.ontimeupdate;
+          recordedVideo.play();
+        };
+      };
+    }
+  });
+{% endblock%}
 
 {% block body %}
 <div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<div>
+	<div class="row" style="padding-bottom: 5em;">
+		<div class="col-md-12">
+			<div style="text-align: center; margin: 0 auto;">
 				<h1>The results are in!</h1>
 				<p>Good job! Here's a report of how you did.</p>
+				<img id="success" class="img-thumbnail" src="{{ url_for('static', filename='img/success.png')}}" style="width: 30em;">
 			</div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6" style="padding-right: 2em;">
+			<h2>Here's how you were feeling:</h2>
+			<img class="img-thumbnail" src="{{ url_for('static', filename='img/graph.png')}}">
+		</div>
+		<div class="col-md-6" style="padding-left: 2em;">
 			<div id="text">
 				<h2>Here's a breakdown of what you said:</h2>
 				<p white-space: pre-wrap;>
@@ -37,16 +70,24 @@ span.warning {
 					{% endif %}
 				{% endfor %}
 				</p>
+				<p>
+					<span class="stop">Red</span> words indicate words you should cut out.
+				</p>
+				<p>
+					<span class="warning">Yellow</span> words indicate words you could change.
+				</p>
 			</div>
-		</div>	
-		<div class="col-md-6">
-			<img src="{{ url_for('static', filename='img/success.png')}}">
 		</div>
-	</div>
 	
+	</div>
 </div>
 <!-- include adapter for srcObject shim -->
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 <script src="{{ url_for('static', filename='js/main.js')}}"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+{% endblock %}
+
+{% block footer %}
+            <img id="logo" src="{{ url_for('static', filename='img/conversation.svg') }}">
+            <p>Made by <a href="https://github.com/feziodoshi">Feril Donshi</a>, <a href="https://github.com/RohitSaha">Rohit Saha</a>, <a href="https://github.com/syz99">Samuel Zhang</a>, and <a href="https://github.com/tyj144">Tyler Jiang</a>.</p>
 {% endblock %}

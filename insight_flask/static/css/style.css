@@ -56,8 +56,17 @@ a:hover {
     color: #15908B;
 }
 
-header { 
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url("../img/backdrop.jpg");
+footer {
+    text-align: center;
+    color: white; 
+}
+footer p { margin: 0 }
+footer a {
+    color: #F1F864;
+}
+
+header, footer { 
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("../img/backdrop.jpg");
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
@@ -67,7 +76,9 @@ header {
 #main {
     text-align: center;
 }
-#gum
+.left {
+    text-align: left;
+}
 /*
 #stripes {
     position: absolute;
@@ -93,7 +104,7 @@ header {
     padding: 1em;
 }
 
-#gum {
+#video-container video {
     margin: 2em 0;
     height: 25em;
 }
@@ -103,6 +114,11 @@ nav #logo {
 }
 header #logo {
     width: 7em;
+}
+
+footer #logo {
+    width: 6em;
+    padding: 1em;
 }
 
 #record {
@@ -146,6 +162,7 @@ header #logo {
 
 
 body {
+    background-color: #F8FBFF;
     /*background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
     background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");
     background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../img/backdrop.jpg");*/
