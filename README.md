@@ -10,4 +10,4 @@ SpeakEasy was built to help people improve their communicaiton skills by using d
 ![Webcam](https://github.com/tyj144/speakeasy/blob/master/webcam.png)
 
 ## Breakdown of Video
-![Breakdown of Speech](https://github.com/tyj144/speakeasy/blob/master/breakdown-3.pdf)
+![Breakdown of Speech](https://github.com/tyj144/speakeasy/blob/master/breakdown_3.png)
