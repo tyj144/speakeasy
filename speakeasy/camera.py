@@ -1,3 +1,4 @@
+# a test to see if we can integrate OpenCV video recording with Flask
 # comes from https://github.com/log0/video_streaming_with_flask_example
 import cv2
 import threading
